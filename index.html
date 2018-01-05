@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Local Weather</title>
+    <meta name="description" content="shows the weather in the selected location">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script type="text/javascript">
+      // prevents the default message from showing up when JS is available
+      document.documentElement.style.display = "none";
+      document.addEventListener("DOMContentLoaded", function(event){
+
+        document.getElementById("noscript").style.display = "none";
+        document.getElementById("script").classList.remove("d-none");
+        document.documentElement.style.display = "";
+      });
+    </script>
+  </head>
+  <body>
+    <header class="text-center gutter">
+      <div class="container">
+        <h1>Weather Check</h1>
+      </div>
+    </header>
+
+    <main class="container text-center">
+      
+      <!-- this div is shown by default. If JS is available it gets hidden -->
+      <div id="noscript">This application needs Javascript to get your local weather.</div>
+
+      <!-- this div is hidden by default. If JS is available it gets shown -->
+      <div id="script" class="d-none">
+        <div id="message" class="message row gutter"></div>
+        
+        <div class="card output gutter">  
+          <div class="card-body">
+            <h2 id="location" class="card-title">Location</h2>
+            <div id="icon">icon</div>
+            <div id="weather">weather</div>
+            <div id="temp">temperature</div>
+            <div id="temp-celsius" class="d-none"></div>
+          </div>
+
+          <div class="card-footer">
+            <!--div class="d-flex align-items-center justify-content-between flex-wrap"-->
+            <div class="card-footer-container">
+              <div id="timestamp" class="text-muted card-footer-item"></div>
+
+              <div class="card-footer-item">
+                
+                <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-secondary btn-sm active">
+                    <input type="radio" name="unit" id="celsius" autocomplete="off" checked> °C
+                  </label>
+                  <label class="btn btn-secondary btn-sm">
+                    <input type="radio" name="unit" id="fahrenheit" autocomplete="off"> °F
+                  </label>
+                </div>
+              
+                <!--button id="temp-unit" type="button" class="btn btn-secondary btn-sm">°C / °F</button-->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="input gutter">
+          <div class="mylocation">
+            <button id="current-location" type="button" class="btn btn-secondary">My Location</button>
+          </div>
+          
+          <div class="input-group">
+            <input type="text" id="search-location" value="" class="form-control" placeholder="Search for..." aria-label="Search for...">
+            <span class="input-group-btn">
+              <button id="reset-search" type="button" class="btn btn-secondary">x</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container text-center">Created by Sylvie Fiquet</div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYhln-_wPliBKKG1PDXJt_ASf7cCyN_6Q&libraries=places"></script>
+    
+    <script type="text/javascript" src="weather.js"></script>
+  </body>
+</html>

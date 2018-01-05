@@ -1,0 +1,152 @@
+/* Debug */
+/*
+* {
+  outline: 1px solid red;
+}
+*/
+
+/* General */
+/* for sticky footer */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* Typography */
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+#timestamp {
+  font-size: 0.9em;
+}
+
+/* Header */
+header {
+  padding: .5rem 0;
+  background-color: #868e96;
+  color: white;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+/* Footer */
+footer {
+  border-top: 2px solid grey;
+  padding: 1rem 0;
+}
+
+/* Content */
+.output, .input {
+  /*margin-bottom: 1.5rem;*/
+}
+
+.container {
+  max-width: 33em;
+}
+
+.gutter {
+  margin-bottom: 1.5rem;  
+}
+
+.message {
+  align-items: center;
+  /*margin-bottom: 1.5rem;*/
+}
+
+.mylocation {
+  margin: 1em auto;
+}
+
+.error {
+  color: red;
+}
+
+#noscript {
+  margin: 3em 0;
+  color: red;
+}
+
+/* Card Footer */
+.btn-group > label {
+  margin-bottom: 0;
+}
+
+.card-footer-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: -1.25rem; /* for gutters */
+  margin-bottom: -0.75rem;
+}
+
+.card-footer-item {
+  padding-right: 1.25rem; /* for gutters */
+  padding-bottom: 0.75rem;
+}
+
+span.avoidbreak {
+  display: inline-block;
+}
+
+/* Loader Animation */
+.loader {
+  border: 0.25em solid grey;
+  border-left: 0.25em solid lightgrey;
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); 
+  }
+  100% { 
+    transform: rotate(360deg); 
+  }
+}
+
+/* Media Queries */
+@media screen and (min-width: 305px){
+  h1 {
+    font-size: 2.5rem;
+  }
+  .card-footer-container {
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 768px){
+  header {
+    padding: .75rem 0;
+    margin-bottom: 5em;
+  }
+  .gutter {
+    margin-bottom: 4em;
+  }
+}
+
+@media screen and (min-width: 992px){
+  header {
+    padding: 1rem 0;
+  }
+}
