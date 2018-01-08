@@ -51,6 +51,11 @@ footer {
 }
 
 /* Content */
+.background {
+  background-image: url("clouds-1473311_1920.jpg");
+  background-size: cover;
+}
+
 .output, .input {
   /*margin-bottom: 1.5rem;*/
 }
@@ -58,6 +63,15 @@ footer {
 .container {
   max-width: 33em;
 }
+
+main .container {
+  background-color: hsla(210, 30%, 50%, .6);
+}
+
+.top-gutter {
+  padding-top: 1.5rem;  
+}
+
 
 .gutter {
   margin-bottom: 1.5rem;  
@@ -138,15 +152,35 @@ span.avoidbreak {
 @media screen and (min-width: 768px){
   header {
     padding: .75rem 0;
-    margin-bottom: 5em;
   }
+  
+  main .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    max-width: 37rem;
+  }
+
+  .top-gutter {
+    padding-top: 3rem;
+  }
+  
   .gutter {
-    margin-bottom: 4em;
+    margin-bottom: 4rem;
   }
 }
 
 @media screen and (min-width: 992px){
   header {
     padding: 1rem 0;
+  }
+
+  main .container {
+    padding-left: 7rem;
+    padding-right: 7rem;
+    max-width: 45rem;
+  }
+
+  .top-gutter {
+    padding-top: 5rem;
   }
 }
