@@ -126,7 +126,8 @@
     displayTimestamp();
 
     resetAutocomplete();
-    $("#message").html("").hide();
+    $("#messagebox").hide();
+    $("#message").html("");
   }
 
   // copied as is from MDN
@@ -165,11 +166,13 @@
   }
   
   function displayErrorMessage(msg){
-    $("#message").html(`<div class="col-12 error">${msg}</div>`).show();
+    $("#message").html(`<div class="error">${msg}</div>`);
+    $("#messagebox").show();
   }
 
   function displayInfoMessage(msg){
-    $("#message").html(`<div class="col-9 info">${msg}</div><div class=col-3><div class="loader"></div></div>`).show();
+    $("#message").html(`<div class="info text-left">${msg}</div><div><div class="loader"></div></div>`);
+    $("#messagebox").show();
   }
 
   function handleError(errorMsg){

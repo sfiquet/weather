@@ -31,11 +31,17 @@
       <div class="container text-center top-gutter">
       
         <!-- this div is shown by default. If JS is available it gets hidden -->
-        <div id="noscript">This application needs Javascript to get your local weather.</div>
+        <div id="noscript" class="card">
+          <div class="card-body">This application needs Javascript to get weather data.</div>
+        </div>
 
         <!-- this div is hidden by default. If JS is available it gets shown -->
         <div id="script" class="d-none">
-          <div id="message" class="message row gutter"></div>
+          <div id="messagebox" class="card gutter">
+            <div class="card-body">
+              <div id="message" class="d-flex justify-content-around align-items-center"></div>
+            </div>
+          </div>
           
           <div class="card output gutter">  
             <div class="card-body">
@@ -47,22 +53,20 @@
             </div>
 
             <div class="card-footer">
-              <!--div class="d-flex align-items-center justify-content-between flex-wrap"-->
               <div class="card-footer-container">
                 <div id="timestamp" class="text-muted card-footer-item"></div>
 
                 <div class="card-footer-item">
                   
                   <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-secondary btn-sm active">
+                    <label class="btn btn-app btn-sm active">
                       <input type="radio" name="unit" id="celsius" autocomplete="off" checked> °C
                     </label>
-                    <label class="btn btn-secondary btn-sm">
+                    <label class="btn btn-app btn-sm">
                       <input type="radio" name="unit" id="fahrenheit" autocomplete="off"> °F
                     </label>
                   </div>
                 
-                  <!--button id="temp-unit" type="button" class="btn btn-secondary btn-sm">°C / °F</button-->
                 </div>
               </div>
             </div>
@@ -70,13 +74,13 @@
 
           <div class="input gutter">
             <div class="mylocation">
-              <button id="current-location" type="button" class="btn btn-secondary">My Location</button>
+              <button id="current-location" type="button" class="btn btn-app">My Location</button>
             </div>
             
             <div class="input-group">
               <input type="text" id="search-location" value="" class="form-control" placeholder="Search for..." aria-label="Search for...">
               <span class="input-group-btn">
-                <button id="reset-search" type="button" class="btn btn-secondary">x</button>
+                <button id="reset-search" type="button" class="btn btn-app">x</button>
               </span>
             </div>
           </div>

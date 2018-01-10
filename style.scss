@@ -1,9 +1,15 @@
-/* Debug */
-/*
-* {
-  outline: 1px solid red;
-}
-*/
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+$theme-color: 210;
+$banner-color: hsl($theme-color, 50%, 40%);
+$banner-color-light: hsl($theme-color, 50%, 60%);
+$banner-text-color: white;
+$card-footer-color: hsl($theme-color, 30%, 95%);
+$btn-color: hsl($theme-color, 80%, 50%);
+$loader-color-dark: hsl($theme-color, 50%, 30%);
+$loader-color-light: hsl($theme-color, 50%, 70%);
 
 /* General */
 /* for sticky footer */
@@ -27,6 +33,7 @@ h1 {
 
 h2 {
   font-size: 1.5em;
+  color: $banner-color;
 }
 
 #timestamp {
@@ -36,8 +43,8 @@ h2 {
 /* Header */
 header {
   padding: .5rem 0;
-  background-color: #868e96;
-  color: white;
+  background-color: $banner-color;
+  color: $banner-text-color;
 }
 
 h1 {
@@ -46,7 +53,9 @@ h1 {
 
 /* Footer */
 footer {
-  border-top: 2px solid grey;
+  border-top: 2px solid $banner-color-light;
+  background-color: $banner-color;
+  color: $banner-text-color;
   padding: 1rem 0;
 }
 
@@ -54,10 +63,6 @@ footer {
 .background {
   background-image: url("clouds-1473311_1920.jpg");
   background-size: cover;
-}
-
-.output, .input {
-  /*margin-bottom: 1.5rem;*/
 }
 
 .container {
@@ -77,11 +82,6 @@ main .container {
   margin-bottom: 1.5rem;  
 }
 
-.message {
-  align-items: center;
-  /*margin-bottom: 1.5rem;*/
-}
-
 .mylocation {
   margin: 1em auto;
 }
@@ -95,9 +95,18 @@ main .container {
   color: red;
 }
 
+.btn-app {
+  @include button-variant($btn-color, $btn-color);
+}
+
 /* Card Footer */
 .btn-group > label {
   margin-bottom: 0;
+}
+
+.card-footer {
+  background-color: hsla($theme-color, 30%, 30%, 0.03);
+  border-top: 1px solid hsla($theme-color, 30%, 30%, 0.125);
 }
 
 .card-footer-container {
@@ -122,8 +131,8 @@ span.avoidbreak {
 
 /* Loader Animation */
 .loader {
-  border: 0.25em solid grey;
-  border-left: 0.25em solid lightgrey;
+  border: 0.25em solid $loader-color-dark;
+  border-left: 0.25em solid $loader-color-light;
   border-radius: 50%;
   width: 1.5em;
   height: 1.5em;
