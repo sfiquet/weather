@@ -1,7 +1,6 @@
 (function(){
 
   let autocomplete;
-  let autocompleteListener;
   let actionDate = 0; // time stamp for current action
   let watchid;  // for geolocation
   let xhrWeather;
@@ -78,7 +77,7 @@
 
           } else {
             console.log('success');
-            // replace the place name from the weather API by the Google Place name
+            // replace the place name from the weather API by the name from the autocomplete
             // (if provided) as it's more meaningful to the user
             if (coords.name){
               data.name = coords.name;
@@ -183,28 +182,24 @@
 
   // getLocationCoordinates
   // get the name and the coordinates of the place selected by user in the autocomplete
-  function getLocationCoordinates(timestamp){
+  function getLocationCoordinates(e, timestamp){
     return new Promise((resolve, reject) => {
       displayInfoMessage('Getting coordinates...');
 
-      let name = $('#search-location').val();
-      let place = autocomplete.getPlace();
-
-      if (!place.geometry){
-        reject(`No location information is available for ${place.name}`);
-      } else {
-        let lat = place.geometry.location.lat();
-        let lng = place.geometry.location.lng();
-        resolve({ latitude: lat, longitude: lng, name: name, timestamp: timestamp });
-      }
+      resolve({ 
+        latitude: e.suggestion.latlng.lat, 
+        longitude: e.suggestion.latlng.lng, 
+        name: e.suggestion.name, 
+        timestamp: timestamp,
+      });
     });
   }
 
   // getWeatherAtLocation
   // user-triggered action bound to selection of an item in the autocomplete
-  function getWeatherAtLocation(){
+  function getWeatherAtLocation(e){
     // get location coordinates (sync)
-    getLocationCoordinates(startNewAction())
+    getLocationCoordinates(e, startNewAction())
       // get weather (async)
       .then(getWeather)
       // display weather (sync)
@@ -236,17 +231,17 @@
   function initAutocomplete(){
     let input = document.getElementById('search-location');
     let options = {
-      types: ['(regions)']
+      container: input,
     };
-    autocomplete = new google.maps.places.Autocomplete(input, options);
-    autocompleteListener = autocomplete.addListener('place_changed', getWeatherAtLocation);
+    autocomplete = places(options);
+
+    autocomplete.on('change', getWeatherAtLocation);
+    autocomplete.on('error', e => handleError(`Autocomplete error: ${e.message}`));
+    autocomplete.on('limit', e => handleError(`Autocomplete free tier limit reached: Please try again later`));
   }
 
   function resetAutocomplete(){
-    $('#search-location').val('');
-    // these lines are necessary to avoid flashes of the old menu
-    $('.pac-container').html(''); // removes the menu items
-    $('.pac-container').hide();   // needed or the empty menu with the Google logo will show up
+    autocomplete.setVal('');
   }
 
   // the temperature we get from the weather API is stored in a hidden div
@@ -285,7 +280,6 @@
   }
 
   $(document).ready(function(){
-    $("#reset-search").click(resetAutocomplete);
     $("#current-location").click(getLocalWeather);
     $("#celsius").change(showCelsius);
     $("#fahrenheit").change(showFahrenheit);
