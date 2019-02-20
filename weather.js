@@ -229,10 +229,23 @@
   }
 
   function initAutocomplete(){
+    // restricted key
+    const apiOptions = {
+      appId: 'plN7GLAZ3P5K',
+      apiKey: '77917a155888fc9ec6189d2ab6cc84bc',
+    };
+
     let input = document.getElementById('search-location');
     let options = {
       container: input,
     };
+
+    // development access to Algoglia Places is done without authentication
+    // production uses the restricted key
+    if (location.hostname !== ''){
+      options = Object.assign(apiOptions, options);
+    }
+
     autocomplete = places(options);
 
     autocomplete.on('change', getWeatherAtLocation);
