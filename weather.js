@@ -14,7 +14,6 @@
         reject("Geolocation is not supported");
 
       } else {
-        console.log('Getting current location...', Date.now());
         displayInfoMessage('Getting current location...');
 
         watchid = navigator.geolocation.watchPosition(
@@ -39,7 +38,6 @@
   // and also when a new user-triggered action starts
   function resetLocationWatch(){
     if (watchid !== undefined){
-      console.log('Clearing watchPosition');
       navigator.geolocation.clearWatch(watchid);
       watchid = undefined;
     }
@@ -58,25 +56,21 @@
 
       // ignore if old action
       if (coords.timestamp && coords.timestamp < actionDate){
-        console.log('ignoring old getWeather request');
         setTimeout(function(){
           reject('ignore');
         }, 0);
         return;
       }
       
-      console.log('Getting weather data');
       displayInfoMessage(coords.name ? `Getting weather data for ${coords.name}...` : 'Getting weather data...');
 
       xhrWeather = $.ajax(settings)
         .done(function(data){
           // reject as obsolete if another action was started since this one was fired
           if (coords.timestamp && coords.timestamp < actionDate){
-            console.log('obsolete');
             reject('ignore');
 
           } else {
-            console.log('success');
             // replace the place name from the weather API by the name from the autocomplete
             // (if provided) as it's more meaningful to the user
             if (coords.name){
@@ -92,12 +86,10 @@
           // (the response was already on the way back when the abort happened)
           // timestamps deal with both situations
           if (coords.timestamp && coords.timestamp < actionDate){
-            console.log('obsolete');
             reject('ignore');
 
           // normal case: current query that failed
           } else {
-            console.log("failed to get data", textStatus, error, jqXHR.status);
             reject('Failed to get weather');
           }
         });
@@ -112,7 +104,6 @@
   }
   
   function displayWeather(data){
-    console.log(data);
     $("#location").text(data.name);
     $("#temp-celsius").text(data.main.temp + "");
     showTemperature();
@@ -152,13 +143,9 @@
     };
 
     if (localesSupport){
-      console.log('locale supported');
       $("#timestamp").html(`<span class="date avoidbreak">${date.toLocaleString('en', dateOptions)}</span>` +
         ` <span class="time avoidbreak">${date.toLocaleString('en', timeOptions)}</span>`);
-      //$("#date").text(date.toLocaleString('en', dateOptions));
-      //$("#time").text(date.toLocaleString('en', timeOptions));
     } else {
-      console.log('locale not supported');
       $("#timestamp").html(date.toLocaleString());
     }
 
